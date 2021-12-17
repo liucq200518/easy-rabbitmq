@@ -80,7 +80,7 @@ public class EasyRabbitConsumerProcessor implements BeanPostProcessor {
     private void process(EasyRabbitListener easyRabbitListener, Method method, Object bean) {
         //concurrency处理
         Integer multi = Convert.toInt(easyRabbitListener.concurrency());
-        multi = multi > 500 ? 500 : multi;
+        multi = multi > 20 ? 20 : multi;
         for (int i = 0; i < multi; i++) {
             ExecutorService threadPoolExecutor = ThreadUtil.newSingleExecutor();
             threadPoolExecutor.execute(new ConsumerBuilder(easyRabbitListener, method, bean));
@@ -137,7 +137,7 @@ public class EasyRabbitConsumerProcessor implements BeanPostProcessor {
                         log.debug("Rabbitmq:监听通道{}连接成功！", environment.resolvePlaceholders(easyRabbitListener.queue()));
                     }
                     Integer prefetch = Convert.toInt(easyRabbitListener.prefetch());
-                    prefetch = prefetch > 30 ? 30 : prefetch;
+                    prefetch = prefetch > 20 ? 20 : prefetch;
                     //prefetch处理
                     for (int j = 0; j < prefetch; j++) {
                         ExecutorService threadPoolExecutor = ThreadUtil.newSingleExecutor();
