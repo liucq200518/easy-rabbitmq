@@ -1,0 +1,13 @@
+package com.keyway.rabbitmq.consumer;
+
+
+
+import com.keyway.rabbitmq.common.DetailResponse;
+
+
+/**
+ * @author liuchunqing
+ */
+public interface MessageProcess<T> {
+    DetailResponse process(T message);
+}

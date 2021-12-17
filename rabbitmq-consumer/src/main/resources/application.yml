@@ -1,0 +1,20 @@
+# 应用名称
+spring:
+  application:
+    name: rabbitmq-demo-receiver
+#服务端口
+server:
+  port: 8080
+
+---
+spring:
+  rabbitmq:
+    host: ${inv-cloud-service}
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: lcq-test
+    enable: true
+    publisher-confirms: true
+inv-cloud-service: 192.168.7.214
+
